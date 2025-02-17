@@ -26,4 +26,9 @@ public class OrderSerivceImpl implements OrderService {
         //이건 단일 책임 원칙을 잘 지킨것임.
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+
+    //테스트 용도
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }
