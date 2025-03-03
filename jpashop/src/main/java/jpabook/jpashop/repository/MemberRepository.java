@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Member;
+import jpabook.jpashop.domain.Member;
 import java.util.List;
 
 @Repository
