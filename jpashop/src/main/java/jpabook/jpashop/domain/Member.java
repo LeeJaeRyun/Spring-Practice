@@ -24,5 +24,3 @@ public class Member {
     private List<Order> orders = new ArrayList<>();
 
 }
-
-
