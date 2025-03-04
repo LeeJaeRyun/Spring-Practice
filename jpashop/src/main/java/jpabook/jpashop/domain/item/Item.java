@@ -32,7 +32,7 @@ public abstract class Item {
         this.stockQuantity += quantity;
     }
 
-    public void removeStockQuantity(int quantity) {
+    public void removeStock(int quantity) {
         int reststock = this.stockQuantity - quantity;
         if (reststock < 0) {
             throw new NotEnoughStockException("need more stock");
