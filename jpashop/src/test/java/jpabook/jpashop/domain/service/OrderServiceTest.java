@@ -62,16 +62,25 @@ class OrderServiceTest {
         });
 
         //then
-        assertEquals("재고 수량이 부족합니다.", exception.getMessage());
+        assertEquals("need more stock", exception.getMessage());
     }
 
     @Test
     public void 주문취소() throws Exception {
         //given
+        Member member = createMember();
+        Book item = createBook("JPA책", 10000, 10);
+        int orderCount = 2;
+        Long orderId = orderService.order(member.getId(), item.getId(), orderCount);
 
         //when
+        orderService.cancelOrder(orderId);
 
         //then
+        Order getOrder = orderRepository.findOne(orderId);
+        assertEquals(OrderStatus.CANCEL, getOrder.getStatus(), "주문 취소시 상태는 CANCEL이다.");
+        assertEquals(10, item.getStockQuantity(), "주문 취소된 상품은 그만큼 재고가 증가해야한다.");
+
     }
 
     private Book createBook(String name, int price, int stockQuantity) {
