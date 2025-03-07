@@ -11,6 +11,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
@@ -39,5 +41,13 @@ public class MemberController {
         memberService.join(member);
         return "redirect:/";
     }
+
+    @GetMapping("/members")
+    public String list(Model model) {
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members", members);
+        return "members/memberList";
+    }//이렇게 Member 엔티티로 뿌리기보다는 그냥 MemberForm같은 DTO로 보내주는게 실무적으로도 유지보수적으로도 좋음.
+    //api를 만들때에는 절대 엔티티를 외부로 반환해서는 안됨.
 }
 
