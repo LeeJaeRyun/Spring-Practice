@@ -1,9 +1,9 @@
 package jpabook.jpashop.domain.service;
 
-import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.sql.Update;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,10 +28,10 @@ public class ItemService {
         return itemRepository.findOne(itemId);
     }
 
-    public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+    public void updateItem(Long itemId, UpdateItemDto updateItemDto) {
         Item findItem = itemRepository.findOne(itemId);
-        findItem.setName(name);
-        findItem.setPrice(price);
-        findItem.setStockQuantity(stockQuantity);
+        findItem.setName(updateItemDto.getName());
+        findItem.setPrice(updateItemDto.getPrice());
+        findItem.setStockQuantity(updateItemDto.getStockQuantity());
     }
 }

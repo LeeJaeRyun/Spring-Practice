@@ -3,6 +3,7 @@ package jpabook.jpashop.controller;
 import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.service.ItemService;
+import jpabook.jpashop.domain.service.UpdateItemDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -73,8 +74,13 @@ public class ItemController {
 //        book.setStockQuantity(form.getStockQuantity());
 //        book.setIsbn(form.getIsbn());
 //        itemService.saveItem(book);
-
-        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
+        UpdateItemDto updateItemDto = new UpdateItemDto();
+        updateItemDto.setName(form.getName());
+        updateItemDto.setPrice(form.getPrice());
+        updateItemDto.setStockQuantity(form.getStockQuantity());
+        itemService.updateItem(itemId, updateItemDto);
+//        itemService.updateItem(itemId, form.getName(), form.getPrice(), form.getStockQuantity());
+        
         return "redirect:/items";
 
     }
