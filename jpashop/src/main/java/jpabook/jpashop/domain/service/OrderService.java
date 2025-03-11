@@ -24,7 +24,7 @@ public class OrderService {
     private final ItemRepository itemRepository;
 
     //주문
-    @Transactional
+    @Transactional//트랜잭션안에서 동작할때 JPA가 가장 깔끔하게 동작함 그래서 트랜잭션 안에서 id를 바탕으로 객체를 찾아서 이것저것하는듯
     public Long order(Long memberId, Long itemId, int count) {
 
         //엔티티 조회
@@ -42,7 +42,9 @@ public class OrderService {
         Order order = Order.createOrder(member, delivery, orderItem);
 
         //주문 저장
-        orderRepository.save(order);
+        orderRepository.save(order);//이걸 저장하는 이유는 JPA 영속성 컨텍스트는 변경 감지(더티체킹)을 통해 자동으로 업데이트를 수행하지만
+        //새로운 엔티티를 생성할때는 자동으로 저장안함.
+        //그니까 수정할때만 적용되는 사항
         return order.getId();
     }
 
