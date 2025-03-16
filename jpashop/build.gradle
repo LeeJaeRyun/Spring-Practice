@@ -31,6 +31,7 @@ dependencies {
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'  // Jakarta 버전 사용
 	implementation 'org.hibernate.validator:hibernate-validator:7.0.0.Final'  // Hibernate Validator
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
