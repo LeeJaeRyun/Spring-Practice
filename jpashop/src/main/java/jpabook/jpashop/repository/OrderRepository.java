@@ -64,4 +64,12 @@ public class OrderRepository {
 
         return query.getResultList();
     }
+
+    public List<Order> findAllWithMemberDelivery() {
+        return em.createQuery(//fetch join으로 진짜 데이터를 들고옴
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
 }
